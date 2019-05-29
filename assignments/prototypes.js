@@ -10,14 +10,22 @@
 */
   
 
-/*
-  === CharacterStats ===
+
+  // === CharacterStats ===
+
+  function CharacterStats(stats) {
+  this.healthPoints = stats.healthPoints;
+
+  // prototype method -> returns the string '<object name> took damage.'
+
+  CharacterStats.prototype.takeDamage = function () {
+    return (`${this.name} took damage.`)
+  }
  
-  * healthPoints
-  * takeDamage() // prototype method -> returns the string '<object name> took damage.'
   * should inherit destroy() from GameObject's prototype
   * 
- */
+  
+ 
 
  
 
@@ -33,7 +41,7 @@
 
 
   // prototype method -> returns the string '<object name> offers a greeting in <object language>.'
-  * greet() 
+  
   Humanoid.prototype.greet = function(greeting) {
     return(`${this.name} offers a greeting in ${this.language}.`)
   }
