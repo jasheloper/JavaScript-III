@@ -16,6 +16,7 @@
   
 
 // === GameObject ===
+
 function GameObject(GameObj) {
 
   this.createdAt =  GameObj.createdAt;
@@ -26,19 +27,35 @@ function GameObject(GameObj) {
 
   GameObj.prototype.destroy = function(destroyFunc) {
     return `${this.name} was removed from the game.`; // prototype method that returns: `${this.name} was removed from the game.`
-    
+
+  };
+}
+
+
+
+
+
+
+ // === CharacterStats ===
+
+ function CharacterStats(CharStats) {
+
+  this.healthPoints = CharStats.healthPoints;
+
+  CharStats.prototype.takeDamage = function(damaageFunc) {
+    return `${this.name} took damage.`; // prototype method -> returns the string '<object name> took damage.'
   } 
-    };
 
-
-
-
-/*
-  === CharacterStats ===
-  * healthPoints
-  * takeDamage() // prototype method -> returns the string '<object name> took damage.'
   * should inherit destroy() from GameObject's prototype
-*/
+
+  };
+
+}
+
+
+
+
+
 
 /*
   === Humanoid (Having an appearance or character resembling that of a human.) ===
