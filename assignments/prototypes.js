@@ -25,10 +25,13 @@ function GameObject(GameObj) {
 
   this.dimensions = GameObj.dimensions; // (These represent the character's size in the video game)
 
-  GameObj.prototype.destroy = function(destroyFunc) {
-    return `${this.name} was removed from the game.`; // prototype method that returns: `${this.name} was removed from the game.`
 
   };
+
+  GameObject.prototype.destroy = function() {
+    return `${this.name} was removed from the game.`; // prototype method that returns: `${this.name} was removed from the game.`
+
+
 }
 
 
@@ -38,16 +41,30 @@ function GameObject(GameObj) {
 
  // === CharacterStats ===
 
- function CharacterStats(CharStats) {
 
-  this.healthPoints = CharStats.healthPoints;
+ function CharacterStats(charAttrs) {
+  GameObject.call(this, charAttrs);
+  this.healthPoints = charAttrs.healthPoints;
+};
 
-  CharacterStats.prototype.takeDamage = function() {
-    return `${this.name} took damage.`; // prototype method -> returns the string '<object name> took damage.'
-  } 
+CharacterStats.prototype = Object.create(GameObject.prototype);
 
-  CharacterStats.prototype = Object.create(GameObject.prototype); // should inherit destroy() from GameObject's prototype
-  };
+CharacterStats.prototype.takeDamage = function () {
+  return `${this.name} took damage`;
+}
+
+//  function CharacterStats(CharStats) {
+//   CharacterStats.prototype = Object.create(GameObject.prototype); 
+//   this.healthPoints = CharStats.healthPoints;
+
+  
+
+//   // should inherit destroy() from GameObject's prototype
+//   };
+
+//   CharacterStats.prototype.takeDamage = function() {
+//     return `${this.name} took damage.`; // prototype method -> returns the string '<object name> took damage.'
+//   } 
 
 
 
@@ -57,27 +74,33 @@ function GameObject(GameObj) {
   // === Humanoid (Having an appearance or character resembling that of a human.) ===
 
   function Humanoid(HumanoidAttr) {
-
+  CharacterStats.call(this, HumanoidAttr);
   this.team = HumanoidAttr.team;
 
   this.weapons =  HumanoidAttr.weapons;
 
   this.language = HumanoidAttr.language;
 
-  Humanoid.prototype.greet = function(greeting) {
-  return `${this.name} offers a greeting in ${this.language}.` 
-  // prototype method -> returns the string '<object name> offers a greeting in <object language>.'
-
-  Humanoid.prototype = Object.create(CharacterStats.prototype);  // should inherit destroy() from GameObject through CharacterStats
-
-  CharacterStats.prototype = Object.create(CharacterStats.prototype);
-  // should inherit takeDamage() from CharacterStats
   };
+
+
+
+  Humanoid.prototype = Object.create(CharacterStats.prototype);
+  // should inherit takeDamage() from CharacterStats
+
+
+
+  Humanoid.prototype.greet = function() {
+    return `${this.name} offers a greeting in ${this.language}.` 
+    // prototype method -> returns the string '<object name> offers a greeting in <object language>.'
+  
 
   }
 
+  
+  
 
- 
+
 
 
 
